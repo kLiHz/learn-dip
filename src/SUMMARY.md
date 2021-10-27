@@ -7,4 +7,5 @@
 
 - [OpenCV 介绍](./opencv-intro/README.md)
     - [如何获得 OpenCV](./opencv-intro/get-opencv.md)
+    - [使用 OpenCV 的 C++ 接口](./opencv-intro/use-opencv-cpp.md)
     - [使用 OpenCV](./opencv-intro/use-opencv.md)

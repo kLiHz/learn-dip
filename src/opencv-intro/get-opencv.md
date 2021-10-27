@@ -42,9 +42,9 @@ $ pacman -S mingw-w64-x86_64-opencv
 
 vcpkg 是一款开源的、基于源代码的 C++ 依赖管理器。简单地说，用户可以使用 vcpkg 安装自己需要的 C++ 依赖。
 
-将 vcpkg 的整个仓库克隆在本地，再执行提供的脚本，即可完成 vcpkg 的部署。
+将 vcpkg 的整个仓库克隆在本地，再执行提供的脚本，即可完成 vcpkg 的部署，详情参见 [vcpkg 仓库的 README](https://github.com/microsoft/vcpkg) 或 [网站上的说明材料](https://vcpkg.io/en/getting-started.html)。
 
-> 之前的 vcpkg 以及之后 OpenCV 的代码是从 GitHub 取得的，因此可能需要用户具有相应的网络访问环境。笔者实验时，vcpkg 会自动使用系统浏览器代理（如果进行了相应的配置），但执行 `git clone` 可能需要在终端中手动设置 HTTP 和 HTTPS 代理。
+> 无论是 vcpkg 还是之后 OpenCV 的代码，都是从 GitHub 取得的，因此可能需要用户具有相应的网络访问环境。笔者实验时，vcpkg 会**自动使用系统代理**（如果进行了相应的配置），但执行 `git clone` 可能需要在终端中**手动设置 HTTP 和 HTTPS 代理服务器地址相关的环境变量**。
 
 vcpkg 的若干实例是互不影响的。用户可以在计算机上部署多个 vcpkg 的实例。针对其这个特性，用户可以先切换到 vcpkg 的目录下再执行命令，而不是将其添加到 PATH。
 
@@ -58,15 +58,31 @@ vcpkg 的若干实例是互不影响的。用户可以在计算机上部署多�
 PS> ./vcpkg install opencv
 ```
 
+需要注意，对于 OpenCV 以及其他一些包，vcpkg 在安装时**有不同的 feature 可供选择**。可以在 [vcpkg 网站上检索包对应的信息](https://vcpkg.io/en/packages.html)，或者使用 `./vcpkg search <packagename>` 进行检索。
+
+比如，我们可以执行下面的命令，选择需要的 feature 并进行安装：
+
+```console
+PS> ./vcpkg install opencv[core,dnn,jpeg,png,quirc,tiff,webp]
+```
+
 之后便会开始相对比较漫长的代码编译过程，可能会耗费约数十分钟或更久。同样，建议将 vcpkg 的目录添加进反病毒软件的排除项，可以加快速度。
 
-编译过程中会产生很多文件，可能会占用十数 GB 的磁盘空间。可以根据需要删除这些中间文件。
+除此之外，在 Windows 上，上述命令默认将会构建针对 x86-windows 平台的 OpenCV，我们还需要手动指定构建安装针对 x64-windows 平台的 OpenCV。
 
-### 预构建版本
+```console
+opencv[core,dnn,eigen,ffmpeg,ipp,jpeg,openmp,png,qt,quirc,tiff,webp]:x64-windows
+```
 
-也可以下载 OpenCV 提供的预构建版本。目前为 Windows 提供的预构建版本是针对 MSVC 的。
+编译过程中会产生很多文件（如 vcpkg 目录下的 buildtrees 目录，存放构建过程中产生的文件，如果保留可能会减少下次更新时花费的时间），可能会占用十数 GB 的磁盘空间。可以根据需要删除这些中间文件。
 
-下载好 OpenCV 预构建版本后，安装在指定的目录即可。同样，推荐使用 CMake 作为构建管理工具。
+### 预构建版本（Windows-MSVC）
+
+也可以在 [OpenCV GitHub 仓库的 Release 页](https://github.com/opencv/opencv/releases) 下载 OpenCV 提供的预构建版本。目前为 Windows 提供的预构建版本是针对 MSVC 的，文件名类似 `opencv-<version>-vc14_vc15.exe`。
+
+下载好 OpenCV 预构建版本后，安装在指定的目录即可，这里假设安装目录为 `D:\softwares\opencv\`。
+
+同样，推荐使用 CMake 作为构建管理工具，具体使用方法在下一节介绍。
 
 ### Python
 
@@ -76,6 +92,12 @@ PS> ./vcpkg install opencv
 
 ```
 pip install opencv-python
+```
+
+或者
+
+```
+python -m pip install opencv-python
 ```
 
 ## Ubuntu

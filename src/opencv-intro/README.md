@@ -13,5 +13,6 @@ OpenCV 是一个开源的图像处理库。
 章节概览：
 
 - [如何获得 OpenCV](./get-opencv.md)
+- [使用 OpenCV 的 C++ 接口](./use-opencv-cpp.md)
 - [使用 OpenCV](./use-opencv.md)
 
