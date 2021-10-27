@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>使用 OpenCV - 学习数字图像处理</title>
+        <title>使用 OpenCV 的 C++ 接口 - 学习数字图像处理</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">前言</a></li><li class="chapter-item expanded "><a href="../opencv-intro/index.html"><strong aria-hidden="true">1.</strong> OpenCV 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opencv-intro/get-opencv.html"><strong aria-hidden="true">1.1.</strong> 如何获得 OpenCV</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv-cpp.html"><strong aria-hidden="true">1.2.</strong> 使用 OpenCV 的 C++ 接口</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv.html" class="active"><strong aria-hidden="true">1.3.</strong> 使用 OpenCV</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">前言</a></li><li class="chapter-item expanded "><a href="../opencv-intro/index.html"><strong aria-hidden="true">1.</strong> OpenCV 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opencv-intro/get-opencv.html"><strong aria-hidden="true">1.1.</strong> 如何获得 OpenCV</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv-cpp.html" class="active"><strong aria-hidden="true">1.2.</strong> 使用 OpenCV 的 C++ 接口</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv.html"><strong aria-hidden="true">1.3.</strong> 使用 OpenCV</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,7 +115,7 @@
                         <a href="https://github.com/tsagaanbar/learn-dip" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/tsagaanbar/learn-dip/edit/main/src/opencv-intro/use-opencv.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/tsagaanbar/learn-dip/edit/main/src/opencv-intro/use-opencv-cpp.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                     </div>
@@ -142,32 +142,55 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="使用-opencv"><a class="header" href="#使用-opencv">使用 OpenCV</a></h1>
-<h2 id="矩阵相乘"><a class="header" href="#矩阵相乘">矩阵相乘</a></h2>
-<p>下面的 C++ 代码可以进行两个矩阵的相乘。关于接口的详细使用方式会在之后章节介绍。</p>
-<p>代码文件：<a href="./code/mat-multiply.cpp">code/mat-multiply.cpp</a> </p>
-<pre><code class="language-cpp">#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;iostream&gt;
+                        <h1 id="使用-opencv-的-c-接口"><a class="header" href="#使用-opencv-的-c-接口">使用 OpenCV 的 C++ 接口</a></h1>
+<p>之前说到，推荐使用 CMake 进行 C++ 项目的构建管理工具。</p>
+<p>在如上述文章安装好 OpenCV 后，只需要在 <code>CMakeLists.txt</code> 中使用 <code>find_package(OpenCV REQUIRED)</code> 即可引入需要的安装包。</p>
+<blockquote>
+<p>在使用时可能还需要为 CMake 传入正确的参数，比如，使用 vcpkg 需要指定工具链的路径，使用 Windows 上的预构建版本则需要指定 OpenCV 的路径。具体操作将会在下文介绍。</p>
+</blockquote>
+<p>一个完整的 CMakeLists.txt 文件类似如下：</p>
+<pre><code class="language-cmake">project(CMAKE_OPENCV_TEST)
+cmake_minimum_required(VERSION 3.13)
 
-int main()
-{
-    double data_a[] = { 3, 2, 1, 5, 9, 1, 3, 0 };
-    double data_b[] = { 2, 9, 0, 1, 3, 5, 2, 4, 7, 8, 1, 5 };
+find_package(OpenCV REQUIRED)
+message(&quot;${OpenCV_DIR}&quot;)
 
-    cv::Mat a(2, 4, CV_64F, data_a);
-    cv::Mat b(4, 3, CV_64F, data_b);
-    std::cout &lt;&lt; a &lt;&lt; '\n' &lt;&lt; b &lt;&lt; '\n' &lt;&lt; a * b;
-}
+add_executable(main &quot;hello.cpp&quot;)
+target_link_libraries(main ${OpenCV_LIBS})
 </code></pre>
-<h2 id="代码展示python"><a class="header" href="#代码展示python">代码展示：Python</a></h2>
-<p>Python 是一个解释性的语言。</p>
+<h2 id="vcpkg"><a class="header" href="#vcpkg">vcpkg</a></h2>
+<p>在 CMake 配置过程中，需要将 vcpkg 目录下的 <code>scripts/buildsystems/vcpkg.cmake</code> 文件路径，作为 <code>CMAKE_TOOLCHAIN_FILE</code> 变量传入，这样 CMake 就可以识别到该 vcpkg 实例中安装的包了。</p>
+<p>比如，假设 vcpkg 的目录位于 <code>C:/dev/vcpkg/</code>，则需要在 CMake 的“Configure Args”中添加：</p>
+<pre><code>-DCMAKE_TOOLCHAIN_FILE=C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake
+</code></pre>
+<p>这个选项通常可以在 IDE 的构建选项中找到。如果使用命令行界面，则可以采用类似如下的命令：</p>
+<pre><code>cmake \
+    -B [build directory] \
+    -S . \
+    -DCMAKE_TOOLCHAIN_FILE=&quot;[path to vcpkg]/scripts/buildsystems/vcpkg.cmake&quot;
+</code></pre>
+<h2 id="预构建版本windows"><a class="header" href="#预构建版本windows">预构建版本（Windows）</a></h2>
+<p>在 CMake 的配置阶段将 OpenCV 的安装路径作为 <code>OpenCV_DIR</code> 变量传入，CMake 就可以识别到安装的 OpenCV 了。</p>
+<p>假设安装目录为 <code>D:\softwares\opencv\</code>。可以将参数写入 IDE 的构建工具选项：</p>
+<pre><code>-DOpenCV_DIR=D:/softwares/opencv/build/x64/vc15/lib
+</code></pre>
+<p>也可以使用命令行界面进行 CMake 的 Configure 过程：</p>
+<pre><code>cmake \
+    -B [build directory] \
+    -S . \
+    -DOpenCV_DIR=&quot;D:/softwares/opencv/build/x64/vc15/lib&quot;
+</code></pre>
+<p>除此之外，也可以使用 <code>set()</code> 命令在 CMakeLists.txt 文件中显式指明路径，或者让 CMake 的 <code>find_package</code> 在指定目录下查找。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../opencv-intro/use-opencv-cpp.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../opencv-intro/get-opencv.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../opencv-intro/use-opencv.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -175,8 +198,11 @@ int main()
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../opencv-intro/use-opencv-cpp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../opencv-intro/get-opencv.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../opencv-intro/use-opencv.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

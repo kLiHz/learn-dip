@@ -4,37 +4,30 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>如何获得 OpenCV - 学习数字图像处理</title>
-                
-
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-                <link rel="icon" href="../favicon.svg">
-                        <link rel="shortcut icon" href="../favicon.png">
-                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-                <link rel="stylesheet" href="../css/print.css" media="print">
-        
+        <link rel="stylesheet" href="../css/print.css" media="print">
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="../fonts/fonts.css">
-        
+        <link rel="stylesheet" href="../fonts/fonts.css">
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-                <!-- MathJax -->
+        <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-            </head>
+    </head>
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
@@ -84,14 +77,14 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">前言</a></li><li class="chapter-item expanded "><a href="../opencv-intro/index.html"><strong aria-hidden="true">1.</strong> OpenCV 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opencv-intro/get-opencv.html" class="active"><strong aria-hidden="true">1.1.</strong> 如何获得 OpenCV</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv.html"><strong aria-hidden="true">1.2.</strong> 使用 OpenCV</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">前言</a></li><li class="chapter-item expanded "><a href="../opencv-intro/index.html"><strong aria-hidden="true">1.</strong> OpenCV 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opencv-intro/get-opencv.html" class="active"><strong aria-hidden="true">1.1.</strong> 如何获得 OpenCV</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv-cpp.html"><strong aria-hidden="true">1.2.</strong> 使用 OpenCV 的 C++ 接口</a></li><li class="chapter-item expanded "><a href="../opencv-intro/use-opencv.html"><strong aria-hidden="true">1.3.</strong> 使用 OpenCV</a></li></ol></li></ol>
+            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -108,28 +101,27 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                                            </div>
+                    </div>
 
                     <h1 class="menu-title">学习数字图像处理</h1>
 
                     <div class="right-buttons">
-                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                                                                        <a href="https://github.com/tsagaanbar/learn-dip" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/tsagaanbar/learn-dip" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                                                                        <a href="https://github.com/tsagaanbar/learn-dip/edit/main/src/opencv-intro/get-opencv.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/tsagaanbar/learn-dip/edit/main/src/opencv-intro/get-opencv.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                                <div id="search-wrapper" class="hidden">
+                <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
@@ -139,7 +131,6 @@
                         </ul>
                     </div>
                 </div>
-                
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -175,9 +166,9 @@
 <h3 id="vcpkg"><a class="header" href="#vcpkg">vcpkg</a></h3>
 <p>如果用户使用的是微软的 MSVC，则建议搭配 <a href="https://cmake.org/">CMake</a> 和 <a href="https://vcpkg.io/">vcpkg</a> 使用。</p>
 <p>vcpkg 是一款开源的、基于源代码的 C++ 依赖管理器。简单地说，用户可以使用 vcpkg 安装自己需要的 C++ 依赖。</p>
-<p>将 vcpkg 的整个仓库克隆在本地，再执行提供的脚本，即可完成 vcpkg 的部署。</p>
+<p>将 vcpkg 的整个仓库克隆在本地，再执行提供的脚本，即可完成 vcpkg 的部署，详情参见 <a href="https://github.com/microsoft/vcpkg">vcpkg 仓库的 README</a> 或 <a href="https://vcpkg.io/en/getting-started.html">网站上的说明材料</a>。</p>
 <blockquote>
-<p>之前的 vcpkg 以及之后 OpenCV 的代码是从 GitHub 取得的，因此可能需要用户具有相应的网络访问环境。笔者实验时，vcpkg 会自动使用系统浏览器代理（如果进行了相应的配置），但执行 <code>git clone</code> 可能需要在终端中手动设置 HTTP 和 HTTPS 代理。</p>
+<p>无论是 vcpkg 还是之后 OpenCV 的代码，都是从 GitHub 取得的，因此可能需要用户具有相应的网络访问环境。笔者实验时，vcpkg 会<strong>自动使用系统代理</strong>（如果进行了相应的配置），但执行 <code>git clone</code> 可能需要在终端中<strong>手动设置 HTTP 和 HTTPS 代理服务器地址相关的环境变量</strong>。</p>
 </blockquote>
 <p>vcpkg 的若干实例是互不影响的。用户可以在计算机上部署多个 vcpkg 的实例。针对其这个特性，用户可以先切换到 vcpkg 的目录下再执行命令，而不是将其添加到 PATH。</p>
 <p>由于 vcpkg 是基于源代码的，因此在安装 OpenCV 之前，需要用户先安装微软的编译器 MSVC。</p>
@@ -187,15 +178,26 @@
 </blockquote>
 <pre><code class="language-console">PS&gt; ./vcpkg install opencv
 </code></pre>
+<p>需要注意，对于 OpenCV 以及其他一些包，vcpkg 在安装时<strong>有不同的 feature 可供选择</strong>。可以在 <a href="https://vcpkg.io/en/packages.html">vcpkg 网站上检索包对应的信息</a>，或者使用 <code>./vcpkg search &lt;packagename&gt;</code> 进行检索。</p>
+<p>比如，我们可以执行下面的命令，选择需要的 feature 并进行安装：</p>
+<pre><code class="language-console">PS&gt; ./vcpkg install opencv[core,dnn,jpeg,png,quirc,tiff,webp]
+</code></pre>
 <p>之后便会开始相对比较漫长的代码编译过程，可能会耗费约数十分钟或更久。同样，建议将 vcpkg 的目录添加进反病毒软件的排除项，可以加快速度。</p>
-<p>编译过程中会产生很多文件，可能会占用十数 GB 的磁盘空间。可以根据需要删除这些中间文件。</p>
-<h3 id="预构建版本"><a class="header" href="#预构建版本">预构建版本</a></h3>
-<p>也可以下载 OpenCV 提供的预构建版本。目前为 Windows 提供的预构建版本是针对 MSVC 的。</p>
-<p>下载好 OpenCV 预构建版本后，安装在指定的目录即可。同样，推荐使用 CMake 作为构建管理工具。</p>
+<p>除此之外，在 Windows 上，上述命令默认将会构建针对 x86-windows 平台的 OpenCV，我们还需要手动指定构建安装针对 x64-windows 平台的 OpenCV。</p>
+<pre><code class="language-console">opencv[core,dnn,eigen,ffmpeg,ipp,jpeg,openmp,png,qt,quirc,tiff,webp]:x64-windows
+</code></pre>
+<p>编译过程中会产生很多文件（如 vcpkg 目录下的 buildtrees 目录，存放构建过程中产生的文件，如果保留可能会减少下次更新时花费的时间），可能会占用十数 GB 的磁盘空间。可以根据需要删除这些中间文件。</p>
+<h3 id="预构建版本windows-msvc"><a class="header" href="#预构建版本windows-msvc">预构建版本（Windows-MSVC）</a></h3>
+<p>也可以在 <a href="https://github.com/opencv/opencv/releases">OpenCV GitHub 仓库的 Release 页</a> 下载 OpenCV 提供的预构建版本。目前为 Windows 提供的预构建版本是针对 MSVC 的，文件名类似 <code>opencv-&lt;version&gt;-vc14_vc15.exe</code>。</p>
+<p>下载好 OpenCV 预构建版本后，安装在指定的目录即可，这里假设安装目录为 <code>D:\softwares\opencv\</code>。</p>
+<p>同样，推荐使用 CMake 作为构建管理工具，具体使用方法在下一节介绍。</p>
 <h3 id="python"><a class="header" href="#python">Python</a></h3>
 <p>上述为 C++ 的安装使用。如果使用 Python，可以使用 pip 安装 OpenCV。</p>
 <p>在配置好 Python 以及 pip 的情况下，只需要在终端中执行：</p>
 <pre><code>pip install opencv-python
+</code></pre>
+<p>或者</p>
+<pre><code>python -m pip install opencv-python
 </code></pre>
 <h2 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h2>
 <p>关于 Ubuntu 的软件源配置这里不作赘述。</p>
@@ -225,49 +227,38 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../opencv-intro/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../opencv-intro/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-                                                    <a rel="next" href="../opencv-intro/use-opencv.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../opencv-intro/use-opencv-cpp.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../opencv-intro/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../opencv-intro/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-                                    <a rel="next" href="../opencv-intro/use-opencv.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../opencv-intro/use-opencv-cpp.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                            </nav>
+            </nav>
 
         </div>
 
-        
-        
-        
-                <script type="text/javascript">
+        <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-        
-                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-        
     </body>
 </html>
