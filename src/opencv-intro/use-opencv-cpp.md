@@ -37,9 +37,11 @@ cmake \
 
 下载后完成后运行该程序, 选择解压路径, 程序会将文件解压到选择路径的 *opencv* 目录下. 比如指定提取路径为 *D:/softwares/*, 则提取完成后文件将位于 *D:/softwares/opencv/* 目录下.
 
+该目录下有 `build` 和 `sources` 两个目录, 分别存放构建产物和源代码. 下文将 *D:/softwares/opencv/build/* 称作 `OPENCV_DIR`.
+
 由于预构建版本中提供的 *OpenCVConfig.cmake* 文件链接动态库时使用的是相对路径, 为了构建出的程序能够寻找到对应的动态库, 进而正常执行, 我们还需要将对应库文件的路径添加到 `PATH` 环境变量中, 或者把文件复制到构建出的可执行文件所在的目录下.
 
-这里我们使用 `vc15` 的构建版本, 则二进制文件所在的目录为 *D:/softwares/opencv/build/x64/vc15/bin* (若将 *D:/softwares/opencv/build/x64/vc15* 称作 `OPENCV_DIR`, 则二进制文件目录即为其下的 *bin* 目录).
+这里我们使用 `vc15` 的构建版本, 则二进制文件所在的目录为 *\$\{OPENCV\_DIR\}/x64/vc15/bin* (即 *D:/softwares/opencv/build/x64/vc15/bin* 目录).
 
 预构建版本中将所有的库打包成了一个后缀为 *world* 的 DLL, 即 *opencv\_world460.dll* 和 *opencv\_world460d.dll*. 除此之外还有一些其它的 DLL 库文件, 这里暂不介绍. 文件名中的数字表示版本号, 末尾的 `d` 表示为 Debug 版本, 否则则为 Relase 版本. 文件名后缀为 *.pdb* 的文件为对应的调试信息文件. 文件后缀为 *.exe* 的文件为实用程序.
 
@@ -47,9 +49,15 @@ cmake \
 
 如果是将构建好的程序分享给别人使用, 则建议将对应的 *.dll* 和 *.pdb* 文件一同打包 (如果是 Debug 版本, 记得使用文件名带 `d` 的文件).
 
-如前文所说, 在开发过程中建议使用 CMake, 则在 CMake 的配置阶段将 OpenCV 的安装路径下的 `lib` 目录作为 `OpenCV_DIR` 变量传入, CMake 就可以识别到安装的 OpenCV 了.
+如前文所说, 在开发过程中建议使用 CMake, 则在 CMake 的配置阶段将 OpenCV 的安装路径 (即前述的 `OPENCV_DIR`) 作为 `OpenCV_DIR` 变量传入, CMake 就可以识别到安装的 OpenCV 了.
 
 可以将参数写入 IDE 的构建工具选项：
+
+```
+-DOpenCV_DIR=D:/softwares/opencv/build
+```
+
+或者:
 
 ```
 -DOpenCV_DIR=D:/softwares/opencv/build/x64/vc15/lib
