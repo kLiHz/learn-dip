@@ -163,13 +163,17 @@
 <a href="https://learn.microsoft.com/en-us/cpp/porting/binary-compat-2015-2017">C++ binary compatibility between Visual Studio versions - Microsoft Learn</a>),
 因此仍能搭配新版本的 Visual Studio 工具链使用.</p>
 <p>下载后完成后运行该程序, 选择解压路径, 程序会将文件解压到选择路径的 <em>opencv</em> 目录下. 比如指定提取路径为 <em>D:/softwares/</em>, 则提取完成后文件将位于 <em>D:/softwares/opencv/</em> 目录下.</p>
+<p>该目录下有 <code>build</code> 和 <code>sources</code> 两个目录, 分别存放构建产物和源代码. 下文将 <em>D:/softwares/opencv/build/</em> 称作 <code>OPENCV_DIR</code>.</p>
 <p>由于预构建版本中提供的 <em>OpenCVConfig.cmake</em> 文件链接动态库时使用的是相对路径, 为了构建出的程序能够寻找到对应的动态库, 进而正常执行, 我们还需要将对应库文件的路径添加到 <code>PATH</code> 环境变量中, 或者把文件复制到构建出的可执行文件所在的目录下.</p>
-<p>这里我们使用 <code>vc15</code> 的构建版本, 则二进制文件所在的目录为 <em>D:/softwares/opencv/build/x64/vc15/bin</em> (若将 <em>D:/softwares/opencv/build/x64/vc15</em> 称作 <code>OPENCV_DIR</code>, 则二进制文件目录即为其下的 <em>bin</em> 目录).</p>
+<p>这里我们使用 <code>vc15</code> 的构建版本, 则二进制文件所在的目录为 <em>${OPENCV_DIR}/x64/vc15/bin</em> (即 <em>D:/softwares/opencv/build/x64/vc15/bin</em> 目录).</p>
 <p>预构建版本中将所有的库打包成了一个后缀为 <em>world</em> 的 DLL, 即 <em>opencv_world460.dll</em> 和 <em>opencv_world460d.dll</em>. 除此之外还有一些其它的 DLL 库文件, 这里暂不介绍. 文件名中的数字表示版本号, 末尾的 <code>d</code> 表示为 Debug 版本, 否则则为 Relase 版本. 文件名后缀为 <em>.pdb</em> 的文件为对应的调试信息文件. 文件后缀为 <em>.exe</em> 的文件为实用程序.</p>
 <p>如果是在开发机器上, 则将上述提到的 <code>bin</code> 目录添加进 PATH 环境变量即可 (如果更新 OpenCV 则需要记得更新环境变量).</p>
 <p>如果是将构建好的程序分享给别人使用, 则建议将对应的 <em>.dll</em> 和 <em>.pdb</em> 文件一同打包 (如果是 Debug 版本, 记得使用文件名带 <code>d</code> 的文件).</p>
-<p>如前文所说, 在开发过程中建议使用 CMake, 则在 CMake 的配置阶段将 OpenCV 的安装路径下的 <code>lib</code> 目录作为 <code>OpenCV_DIR</code> 变量传入, CMake 就可以识别到安装的 OpenCV 了.</p>
+<p>如前文所说, 在开发过程中建议使用 CMake, 则在 CMake 的配置阶段将 OpenCV 的安装路径 (即前述的 <code>OPENCV_DIR</code>) 作为 <code>OpenCV_DIR</code> 变量传入, CMake 就可以识别到安装的 OpenCV 了.</p>
 <p>可以将参数写入 IDE 的构建工具选项：</p>
+<pre><code>-DOpenCV_DIR=D:/softwares/opencv/build
+</code></pre>
+<p>或者:</p>
 <pre><code>-DOpenCV_DIR=D:/softwares/opencv/build/x64/vc15/lib
 </code></pre>
 <p>也可以使用命令行界面进行 CMake 的 Configure 过程：</p>
